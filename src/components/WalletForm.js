@@ -3,8 +3,13 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 class WalletForm extends Component {
+  // state = {
+  //   expenseIdNumber: 0,
+  // };
+
   render() {
     const { currencies } = this.props;
+    // const { expenseIdNumber } = this.state;
     return (
       <div>
         WalletForm
@@ -49,6 +54,14 @@ class WalletForm extends Component {
               <option value="saude">Saúde</option>
             </select>
           </label>
+
+          <button
+            type="submit"
+            name="adicionar despesa"
+            onClick={ () => console.log('Adicionar despesa') }
+          >
+            Adicionar despesa
+          </button>
 
         </form>
       </div>

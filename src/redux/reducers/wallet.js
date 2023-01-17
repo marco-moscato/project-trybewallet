@@ -2,8 +2,8 @@
 import { REQUEST_CURRENCIES_API } from '../actions';
 
 const INITIAL_STATE = {
-  wallet: [],
   currencies: [],
+  expenses: [],
 };
 
 const walletReducer = (state = INITIAL_STATE, action) => {
