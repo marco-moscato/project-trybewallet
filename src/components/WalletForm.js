@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { addNewExpense } from '../redux/actions';
+import { addExpense } from '../redux/actions';
 
 class WalletForm extends Component {
   state = {
@@ -22,7 +22,7 @@ class WalletForm extends Component {
     event.preventDefault();
     const { id } = this.state;
     const { dispatch } = this.props;
-    dispatch(addNewExpense(this.state));
+    dispatch(addExpense(this.state));
     this.setState({
       id: id + 1,
       value: '',

@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import WalletForm from '../components/WalletForm';
-import { displayCurrencies } from '../redux/actions';
+import { requestCurrencies } from '../redux/actions';
 
 class Wallet extends React.Component {
   componentDidMount() {
     const { dispatch } = this.props;
-    dispatch(displayCurrencies());
+    dispatch(requestCurrencies());
   }
 
   render() {
