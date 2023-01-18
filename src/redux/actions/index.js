@@ -3,6 +3,8 @@ import fetchCurrencies from '../../services/fetchCurrencies';
 
 export const USER_LOGIN = 'USER_LOGIN';
 export const REQUEST_CURRENCIES_API = 'REQUEST_CURRENCIES_API';
+export const SAVE_EXCHANGE_RATE = 'SAVE_EXCHANGE_RATE';
+export const ADD_EXPENSE = 'ADD_EXPENSE';
 
 // Action creator
 export const userLogin = (email) => ({
@@ -17,6 +19,16 @@ export const requestCurrenciesAPI = (payload) => ({
   payload,
 });
 
+export const saveExchangeRate = (payload) => ({
+  type: SAVE_EXCHANGE_RATE,
+  payload,
+});
+
+export const addExpense = (expense) => ({
+  type: ADD_EXPENSE,
+  payload: { ...expense },
+});
+
 // const fetchCurrencies = () => async (dispatch) => {
 //   const endPoint = 'https://economia.awesomeapi.com.br/json/all';
 //   const request = await fetch(endPoint);
@@ -28,7 +40,13 @@ export const requestCurrenciesAPI = (payload) => ({
 
 export const displayCurrencies = () => async (dispatch) => {
   const requestAPI = await fetchCurrencies();
-  const onlyKeys = Object.keys(requestAPI);
-  const handleCurrencies = onlyKeys.filter((ele) => ele !== 'USDT');
-  dispatch(requestCurrenciesAPI(handleCurrencies));
+  const currencies = Object.keys(requestAPI);
+  dispatch(requestCurrenciesAPI(currencies));
+};
+
+export const addNewExpense = (expense) => async (dispatch) => {
+  const requestAPI = await fetchCurrencies();
+  const exchangeRate = Object.values(requestAPI);
+  dispatch(saveExchangeRate(exchangeRate));
+  dispatch(addExpense(expense));
 };

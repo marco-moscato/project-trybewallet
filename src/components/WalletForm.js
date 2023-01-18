@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { addNewExpense } from '../redux/actions';
 
 class WalletForm extends Component {
   state = {
@@ -17,9 +18,25 @@ class WalletForm extends Component {
     this.setState({ [name]: value });
   };
 
+  handleFormSubmit = (event) => {
+    event.preventDefault();
+    const { id } = this.state;
+    const { dispatch } = this.props;
+    dispatch(addNewExpense(this.state));
+    this.setState({
+      id: id + 1,
+      value: '',
+      description: '',
+      currency: 'USD',
+      method: 'Dinheiro',
+      tag: 'Alimentação',
+    });
+  };
+
   render() {
     const { currencies } = this.props;
-    // const { expenseIdNumber } = this.state;
+    const { value, description } = this.state;
+
     return (
       <div>
         WalletForm
@@ -31,6 +48,8 @@ class WalletForm extends Component {
               data-testid="value-input"
               type="number"
               name="value"
+              id="value"
+              value={ value }
               onChange={ this.onInputChange }
             />
           </label>
@@ -42,6 +61,7 @@ class WalletForm extends Component {
               type="text"
               name="description"
               onChange={ this.onInputChange }
+              value={ description }
             />
           </label>
 
@@ -84,9 +104,9 @@ class WalletForm extends Component {
           </label>
 
           <button
-            type="submit"
+            type="button"
             name="adicionar despesa"
-            onClick={ () => console.log('Adicionar despesa') }
+            onClick={ this.handleFormSubmit }
           >
             Adicionar despesa
           </button>
@@ -104,6 +124,7 @@ const mapStateToProps = (state) => ({
 
 WalletForm.propTypes = {
   currencies: PropTypes.arrayOf(PropTypes.string).isRequired,
+  dispatch: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps)(WalletForm);

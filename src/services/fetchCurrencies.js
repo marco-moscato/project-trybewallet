@@ -13,6 +13,7 @@ const fetchCurrencies = async () => {
   const endPoint = 'https://economia.awesomeapi.com.br/json/all';
   const request = await fetch(endPoint);
   const response = await request.json();
+  delete response.USDT;
   return response;
 };
 
