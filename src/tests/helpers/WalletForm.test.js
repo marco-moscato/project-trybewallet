@@ -1,7 +1,6 @@
 import { screen } from '@testing-library/react';
 import React from 'react';
 import userEvent from '@testing-library/user-event';
-import { act } from 'react-dom/test-utils';
 import '@testing-library/jest-dom';
 import Wallet from '../../pages/Wallet';
 import { renderWithRouterAndRedux } from './renderWith';
@@ -24,6 +23,7 @@ describe('', () => {
       expect(tag).toBeDefined();
 
       userEvent.type(value, '11');
+      userEvent.type(description, 'restaurante');
     });
   });
 });

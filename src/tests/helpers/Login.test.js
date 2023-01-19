@@ -1,7 +1,6 @@
 import { screen } from '@testing-library/react';
 import React from 'react';
 import userEvent from '@testing-library/user-event';
-import { act } from 'react-dom/test-utils';
 import '@testing-library/jest-dom';
 import Login from '../../pages/Login';
 import { renderWithRouterAndRedux } from './renderWith';
