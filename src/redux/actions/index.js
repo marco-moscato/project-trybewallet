@@ -26,6 +26,6 @@ export const addExpense = (expense) => async (dispatch) => {
   const requestAPI = await fetchCurrencies();
   dispatch({
     type: ADD_EXPENSE,
-    payload: { ...expense, exchangeRate: { ...requestAPI } },
+    payload: { ...expense, exchangeRates: { ...requestAPI } },
   });
 };
