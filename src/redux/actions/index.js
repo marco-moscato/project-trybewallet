@@ -24,15 +24,8 @@ export const requestCurrencies = () => async (dispatch) => {
 
 export const addExpense = (expense) => async (dispatch) => {
   const requestAPI = await fetchCurrencies();
-  const exchangeRate = Object.values(requestAPI);
   dispatch({
     type: ADD_EXPENSE,
-    payload: { ...expense, exchangeRate: { ...exchangeRate } },
+    payload: { ...expense, exchangeRate: { ...requestAPI } },
   });
 };
-
-// export const displayCurrencies = () => async (dispatch) => {
-//   const requestAPI = await fetchCurrencies();
-//   const currencies = Object.keys(requestAPI);
-//   dispatch(requestCurrenciesAPI(currencies));
-// };
