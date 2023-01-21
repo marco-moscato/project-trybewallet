@@ -24,5 +24,12 @@ describe('', () => {
       const tag = screen.getByTestId('tag-input');
       expect(tag).toBeDefined();
     });
+
+    test('Test if a table is being rendered', () => {
+      renderWithRouterAndRedux(<Wallet />);
+
+      const table = screen.getByRole('table');
+      expect(table).toBeDefined();
+    });
   });
 });
