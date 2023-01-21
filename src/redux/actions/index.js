@@ -4,6 +4,7 @@ import fetchCurrencies from '../../services/fetchCurrencies';
 export const USER_LOGIN = 'USER_LOGIN';
 export const REQUEST_CURRENCIES = 'REQUEST_CURRENCIES';
 export const ADD_EXPENSE = 'ADD_EXPENSE';
+export const DELETE_EXPENSE = 'DELETE_EXPENSE';
 
 // Action creator
 export const userLogin = (email) => ({
@@ -27,5 +28,12 @@ export const addExpense = (expense) => async (dispatch) => {
   dispatch({
     type: ADD_EXPENSE,
     payload: { ...expense, exchangeRates: { ...requestAPI } },
+  });
+};
+
+export const deleteExpense = (id) => (dispatch) => {
+  dispatch({
+    type: DELETE_EXPENSE,
+    payload: id,
   });
 };
