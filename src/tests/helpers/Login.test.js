@@ -3,7 +3,7 @@ import React from 'react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 import Login from '../../pages/Login';
-import { renderWithRouterAndRedux, renderWithRouter, renderWithRedux } from './renderWith';
+import { renderWithRedux } from './renderWith';
 
 describe('', () => {
   describe('Test functionalities of Login page', () => {
