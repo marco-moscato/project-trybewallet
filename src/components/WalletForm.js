@@ -36,7 +36,7 @@ class WalletForm extends Component {
   handleEditForm = (e) => {
     e.preventDefault();
     const { dispatch, idToEdit, expenses } = this.props;
-    const expensesToEdit = expenses;
+    const expensesToEdit = [...expenses];
     const newObject = {
       ...this.state,
       id: idToEdit,
