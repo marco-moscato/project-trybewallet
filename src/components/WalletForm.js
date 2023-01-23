@@ -18,8 +18,8 @@ class WalletForm extends Component {
     this.setState({ [name]: value });
   };
 
-  handleFormSubmit = () => {
-    // e.preventDefault();
+  handleFormSubmit = (e) => {
+    e.preventDefault();
     const { id } = this.state;
     const { dispatch } = this.props;
     dispatch(addExpense(this.state));
@@ -33,29 +33,17 @@ class WalletForm extends Component {
     });
   };
 
-  // handleEditForm = () => {
-  //   // e.preventDefault();
-  //   const { dispatch, idToEdit, expenses } = this.props;
-  //   const expensesToEdit = expenses;
-  //   const newObject = {
-  //     ...this.state,
-  //     id: idToEdit,
-  //     exchangeRates: { ...expensesToEdit[idToEdit].exchangeRates },
-  //   };
-  //   expensesToEdit.splice(idToEdit, 1, newObject);
-  //   dispatch(saveEditedExpense(expensesToEdit));
-  // };
-
-  handleEditForm = () => {
-    // e.preventDefault();
+  handleEditForm = (e) => {
+    e.preventDefault();
     const { dispatch, idToEdit, expenses } = this.props;
+    const expensesToEdit = expenses;
     const newObject = {
       ...this.state,
       id: idToEdit,
-      exchangeRates: { ...expenses[idToEdit].exchangeRates },
+      exchangeRates: { ...expensesToEdit[idToEdit].exchangeRates },
     };
-    const newArrayExpenses = [...expenses].splice(idToEdit, 0, newObject);
-    dispatch(saveEditedExpense(newArrayExpenses));
+    expensesToEdit.splice(idToEdit, 1, newObject);
+    dispatch(saveEditedExpense(expensesToEdit));
   };
 
   render() {

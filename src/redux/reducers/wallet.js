@@ -39,7 +39,7 @@ const walletReducer = (state = INITIAL_STATE, action) => {
   case SAVE_EDITED_EXPENSE:
     return {
       ...state,
-      expenses: [...state.expenses, action.payload],
+      expenses: action.payload,
       editor: false,
 
     };
