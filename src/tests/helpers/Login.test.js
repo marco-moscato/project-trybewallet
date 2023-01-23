@@ -21,8 +21,6 @@ describe('', () => {
     });
 
     test('Test Enter button functionality', () => {
-      renderWithRedux(<Login />);
-
       const emailInput = screen.getByTestId('email-input');
       const passwordInput = screen.getByTestId('password-input');
       const button = screen.getByRole('button', { name: /entrar/i });
