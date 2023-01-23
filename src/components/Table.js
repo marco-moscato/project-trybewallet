@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { deleteExpense } from '../redux/actions';
+import { deleteExpense, editExpense } from '../redux/actions';
 
 class Table extends Component {
-  handleClick = (id) => {
+  handleDeleteButton = (id) => {
     const { expenses, dispatch } = this.props;
     const filterExpenses = expenses.filter((expense) => expense.id !== id);
     dispatch(deleteExpense(filterExpenses));
+  };
+
+  handleEditButton = (expense) => {
+    const { dispatch } = this.props;
+    dispatch(editExpense(expense));
   };
 
   render() {
@@ -25,7 +30,7 @@ class Table extends Component {
               <th>Câmbio utilizado</th>
               <th>Valor convertido</th>
               <th>Moeda de conversão</th>
-              <th>Editar/Excluir</th>
+              <th>Excluir/Editar</th>
             </tr>
           </thead>
           {expenses.map((expense) => (
@@ -44,13 +49,22 @@ class Table extends Component {
                   * expense.exchangeRates[expense.currency].ask).toFixed(2) }
                 </td>
                 <td>Real</td>
+
                 <td>
                   <button
                     data-testid="delete-btn"
                     type="button"
-                    onClick={ () => this.handleClick(expense.id) }
+                    onClick={ () => this.handleDeleteButton(expense.id) }
                   >
                     Excluir
+                  </button>
+
+                  <button
+                    data-testid="edit-btn"
+                    type="button"
+                    onClick={ () => this.handleEditButton(expense) }
+                  >
+                    Editar
                   </button>
                 </td>
               </tr>
@@ -65,6 +79,8 @@ class Table extends Component {
 
 const mapStateToProps = (state) => ({
   expenses: state.wallet.expenses,
+  editor: state.wallet.editor,
+  WalletForm: state.wallet.wallet,
 });
 
 Table.propTypes = {
