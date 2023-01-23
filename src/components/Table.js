@@ -30,7 +30,8 @@ class Table extends Component {
               <th>Câmbio utilizado</th>
               <th>Valor convertido</th>
               <th>Moeda de conversão</th>
-              <th>Excluir/Editar</th>
+              <th>Editar/Excluir</th>
+              {/* <th>Editar</th> */}
             </tr>
           </thead>
           {expenses.map((expense) => (

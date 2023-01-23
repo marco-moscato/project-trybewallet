@@ -27,8 +27,10 @@ describe('', () => {
       const passwordInput = screen.getByTestId('password-input');
       const button = screen.getByRole('button', { name: /entrar/i });
 
+      expect(button).toBeDisabled();
       expect(emailInput).toBeDefined();
       expect(passwordInput).toBeDefined();
+      expect(button).toBeDefined();
 
       userEvent.type(emailInput, 'someemail@internet.com');
       userEvent.type(passwordInput, '333333');
